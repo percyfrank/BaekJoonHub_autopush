@@ -4,17 +4,22 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        StringBuffer sb = new StringBuffer();
 
         while(true) {
+
             String s = br.readLine();
 
-            if(s.equals("END")){
+            if(s.equals("END")) {
                 break;
             }
-            StringBuffer sb = new StringBuffer(s);
-            String code = sb.reverse().toString();
-            System.out.println(code);
+            StringBuffer reverse = new StringBuffer(s).reverse();
+            sb.append(reverse).append("\n");
+
         }
+        System.out.println(sb);
     }
 }
