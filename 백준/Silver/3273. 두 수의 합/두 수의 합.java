@@ -18,19 +18,26 @@ public class Main {
 
         int x = Integer.parseInt(br.readLine());
 
+        int start = 0;
+        int end = n-1;
         int cnt = 0;
-
         Arrays.sort(arr);
-        for(int i = 0; i < n-1; i++) {
-            for(int j = i+1; j < n; j++) {
-                if (arr[i] + arr[j] > x) {
-                    break;
-                } else if (arr[i] + arr[j] == x) {
-                    cnt++;
-                }
+
+        while(start < end) {
+            int sum = arr[start] + arr[end];
+            if (sum == x) {
+                cnt++;
+                start++;
+                end--;
+            } else if (sum < x) {
+                start++;
+            } else {
+                end--;
             }
         }
+
         System.out.println(cnt);
         br.close();
+
     }
 }
