@@ -32,10 +32,11 @@ public class Main {
             }
         });
 
+        StringBuffer sb = new StringBuffer();
         for(int j = 0; j < N; j++) {
-            System.out.printf(coord[j][0]+ " " + coord[j][1]);
-            System.out.println();
+            sb.append(coord[j][0] + " "+ String.valueOf(coord[j][1])).append("\n");
         }
 
+        System.out.println(sb);
     }
 }
