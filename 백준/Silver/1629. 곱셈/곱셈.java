@@ -25,11 +25,11 @@ public class Main {
             return base % mod;
         }
 
-        long r = modBy(base, idx / 2, mod);
-        if (idx % 2 == 1) {
-            return ((r * r % mod) * (base % mod)) % mod;
-        } else {
+        if (idx % 2 == 0) {
+            long r = modBy(base, idx / 2, mod) % mod;
             return r * r % mod;
+        } else {
+            return (base * modBy(base,idx-1,mod)) % mod;
         }
 
     }
