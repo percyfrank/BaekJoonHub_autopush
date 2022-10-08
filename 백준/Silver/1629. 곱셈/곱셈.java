@@ -20,16 +20,16 @@ public class Main {
     }
 
     public static long modBy(long base,long idx,long mod) {
-       
+
         if(idx == 1) {
             return base % mod;
         }
 
         long r = modBy(base, idx / 2, mod);
         if (idx % 2 == 1) {
-            return (r * r % mod) * base % mod;
+            return ((r * r % mod) * (base % mod)) % mod;
         } else {
-            return (r * r) % mod;
+            return r * r % mod;
         }
 
     }
