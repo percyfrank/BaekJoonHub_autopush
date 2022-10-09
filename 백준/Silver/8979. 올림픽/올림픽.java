@@ -41,16 +41,6 @@ public class Main {
 
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        if (N == 2) {
-            if (medal[0][1] == medal[1][1] && medal[0][2] == medal[1][2] && medal[0][3] == medal[1][3]) {
-                map.put(medal[1][0],1);
-                map.put(medal[0][0],1);
-            } else {
-                map.put(medal[1][0],1);
-                map.put(medal[0][0],2);
-            }
-        }
-
         int start = 1;
         int cnt = 1;
         int idx = 1;
@@ -63,7 +53,7 @@ public class Main {
                 cnt++;
             } else {
                 map.put(medal[i+1][0],i+2);
-                start = idx + cnt;
+                start = i+2;
                 cnt = 1;
             }
         }
