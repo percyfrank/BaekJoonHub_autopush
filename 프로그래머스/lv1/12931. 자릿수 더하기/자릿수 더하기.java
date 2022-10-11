@@ -1,11 +1,13 @@
 import java.util.*;
 
 public class Solution {
-    public int solution(int n) {
-        String s = String.valueOf(n);
+     public static int solution(int n) {
+
         int sum = 0;
-        for(int i = 0; i < s.length(); i++) {
-            sum += Integer.parseInt(String.valueOf(s.charAt(i)));
+
+        while(n > 0) {
+            sum += n % 10;
+            n /= 10;
         }
 
         return sum;
