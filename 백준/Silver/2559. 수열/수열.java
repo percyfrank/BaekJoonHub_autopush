@@ -19,21 +19,15 @@ public class Main {
         for(int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
+        int sum = 0;
+        for(int j = 0; j < K; j++)  {
+            sum += arr[j];
+        }
+        int max = sum;
 
-        int end = 0;
-        int max = Integer.MIN_VALUE;
-        int interval_sum = 0;
-
-        for(int start = 0; start <= N-K; start++) {
-            end = start;
-            while(end <= start + K - 1) {
-                interval_sum += arr[end];
-                end++;
-            }
-            if(interval_sum > max) {
-                max = interval_sum;
-            }
-            interval_sum = 0;
+        for(int i = 0; i < N-K; i ++) {
+            sum = sum - arr[i] + arr[i+K];
+            max = Math.max(max, sum);
         }
         System.out.println(max);
     }
