@@ -13,15 +13,21 @@ class Solution {
             map.put(s, map.get(s) - 1);
         }
 
-        Set set = map.entrySet();
-        Iterator it = set.iterator();
-
-        while (it.hasNext()) {
-            Map.Entry e = (Map.Entry) it.next();
-            if ((Integer) e.getValue() != 0) {
-                answer = (String) e.getKey();
+        for(String s : map.keySet()) {
+            if(map.get(s) != 0) {
+                answer = s;
             }
         }
+//         }
+//         Set set = map.entrySet();
+//         Iterator it = set.iterator();
+
+//         while (it.hasNext()) {
+//             Map.Entry e = (Map.Entry) it.next();
+//             if ((Integer) e.getValue() != 0) {
+//                 answer = (String) e.getKey();
+//             }
+//         }
         return answer;
     }
 }
