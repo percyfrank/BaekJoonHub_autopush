@@ -38,7 +38,7 @@ public class Main {
                 continue;
             }
 
-            if (!flag) {
+            else if (!flag) {
                 if (str.charAt(i) == ' ') {
                     while(!stack.empty()) sb.append(stack.pop());
                     sb.append(str.charAt(i));
