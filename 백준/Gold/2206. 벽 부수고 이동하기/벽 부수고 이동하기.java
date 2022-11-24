@@ -80,9 +80,9 @@ public class Main {
         map = new int[N][M];
         visited = new int[N][M];
         for (int i = 0; i < N; i++) {
-            String[] split = br.readLine().split("");
+            String s = br.readLine();
             for (int j = 0; j < M; j++) {
-                map[i][j] = Integer.parseInt(split[j]);
+                map[i][j] = s.charAt(j) - '0';
                 visited[i][j] = Integer.MAX_VALUE;
             }
         }
