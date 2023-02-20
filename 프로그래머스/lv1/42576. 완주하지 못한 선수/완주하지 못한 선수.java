@@ -13,7 +13,7 @@ class Solution {
         
         for(String complete : completion) {
             if(map.containsKey(complete)) {
-                map.put(complete,map.getOrDefault(complete,0) - 1);
+                map.put(complete,map.get(complete) - 1);
                 // System.out.println(map.get(complete));
             }
         }
