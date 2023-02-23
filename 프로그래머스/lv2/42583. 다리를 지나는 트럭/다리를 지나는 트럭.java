@@ -1,47 +1,70 @@
 import java.util.*;
 
 class Solution {
+    
+    class Truck {
+        int weight;
+        int move;
+        
+        public Truck(int weight) {
+            this.weight = weight;
+            this.move = 1;
+        }
+        
+        public void moving() {
+            this.move++;
+        }
+    }
+    
     public int solution(int bridge_length, int weight, int[] truck_weights) {
-        int answer = 0;
-        Queue<Integer> queue = new LinkedList<>();
         
-        // 트럭 총 무게
-        int sum = 0;
+        Queue<Truck> wait = new LinkedList<>();
+        Queue<Truck> move = new LinkedList<>();
         
+        // 대기 큐에 전부 넣기
         for(int truck : truck_weights) {
-            while(true) {
-                // 다리를 건너는 트럭이 없을 경우
-                if(queue.isEmpty()) {
-                    queue.add(truck);
-                    sum += truck;
-                    answer++;
-                    break;
-                } 
-                // 다리 위에 트럭이 있는 경우(3가지로 나뉨)
-                else {
-                    // 트럭이 꽉 찬 경우
-                    if(queue.size() == bridge_length) {
-                        sum -= queue.peek();
-                        queue.poll();
-                    }
-                    // 다음 트럭이 다리에 오르면 최대 무게 초과인 경우
-                    else if(sum + truck > weight) {
-                        queue.add(0);
-                        sum += 0;
-                        answer++;
-                    } 
-                    // 다음 트럭이 다리에 올라도 최대 무게 이내인 경우
-                    else {
-                        queue.add(truck);
-                        sum += truck;
-                        answer++;   
-                        break;
-                    }  
-                }  
+            wait.offer(new Truck(truck));
+        }
+        
+        // 다리 위에 올라와있는 트럭의 총 무게
+        int curWeight = 0;
+        
+        //  모든 트럭이 다리를 건넜을 때 걸린 최단 시간
+        int answer = 0;
+        
+        while(!wait.isEmpty() || !move.isEmpty()) {
+            
+            // 다리에 올라온 순간 시간 +1
+            answer++;
+            
+            // 다리 건너는 트럭이 없는 경우
+            if(move.isEmpty()) {
+                Truck t = wait.poll();
+                curWeight += t.weight;
+                move.offer(t);
+                continue;
+            }
+            
+            // 여기서부턴 다리에 트럭이 있는 경우
+            // 다리 위에 있는 모든 트럭 한 칸씩 이동
+            for(Truck t : move) {
+                t.moving();
+            }
+            
+            // 다리에 트럭이 꽉 찬 경우
+            // 맨 앞에 있는 트럭의 move가 다리 길이를 넘어설 경우
+            if(move.peek().move > bridge_length) {
+                curWeight -= move.poll().weight;
+            }
+            
+            // 다음 트럭이 다리에 올라도 최대 무게 이내인 경우
+            if(!wait.isEmpty() && curWeight + wait.peek().weight <= weight) {
+                Truck t = wait.poll();
+                curWeight += t.weight;
+                move.add(t);
             }
         }
         
-        // 마지막 트럭이 다리에 올라간 시점까지 걸린 시간 + 다리의 길이
-        return answer + bridge_length;
+        return answer;
     }
 }
