@@ -1,39 +1,31 @@
-from collections import deque
-
 n = int(input())
-graph = []
-for _ in range(n):
-    graph.append(list(map(int,input())))
-visited = [[0] * n for _ in range(n)]
+graph = [list(map(int,input())) for _ in range(n)]
 
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
+cnt = 0
 
-def bfs(x,y):
-    visited[x][y] = 1
-    q = deque()
-    q.append((x,y))
-    cnt = 1
-    
-    while q:
-        x,y = q.popleft()
+def dfs(x,y):
+    if 0 <= x < n and 0 <= y < n and graph[x][y] == 1:
+        graph[x][y] = 0
+        global cnt
+        cnt += 1
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            if 0 <= nx < n and 0 <= ny < n:
-                if visited[nx][ny] == 0 and graph[nx][ny] == 1:
-                    visited[nx][ny] = 1
-                    q.append((nx,ny))
-                    cnt += 1
-    return cnt
+            dfs(nx,ny)
+        return True
+
+    return False
 
 arr = []
 for i in range(n):
     for j in range(n):
-        if visited[i][j] == 0 and graph[i][j] == 1:
-            arr.append(bfs(i,j))
+        if dfs(i,j):
+            arr.append(cnt)
+        cnt = 0
 
 print(len(arr))
 arr.sort()
-for i in arr:
-    print(i)
+for num in arr:
+    print(num)
