@@ -1,16 +1,17 @@
-def solve(start):
+def solve(start,sum):
     global cnt
-    if sum(answer) == s and len(answer) > 0:
+    if start >= n:
+        return
+    sum += arr[start]
+    
+    if sum == s:
         cnt += 1
-
-    for num in range(start,n):
-            answer.append(arr[num])
-            solve(num+1)
-            answer.pop()
+    solve(start+1,sum)
+    solve(start+1,sum-arr[start])
 
 n,s = map(int,input().split())
 arr = list(map(int,input().split()))
-answer = []
 cnt = 0
-solve(0)
+
+solve(0,0)
 print(cnt)
