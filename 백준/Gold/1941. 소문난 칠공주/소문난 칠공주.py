@@ -17,7 +17,7 @@ def check(arr):
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
-            if (nx,ny) in arr and 0 <= nx < 5 and 0 <= ny < 5:
+            if (nx,ny) in arr:
                 idx = arr.index((nx,ny))
                 if not visited[idx]:
                     visited[idx] = True
