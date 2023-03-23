@@ -3,10 +3,10 @@ from collections import deque
 graph = [list(map(str,input())) for _ in range(5)]
 answer = 0
 arr = []
+dx = [-1,1,0,0]
+dy = [0,0,-1,1]
 
 def check(arr):
-    dx = [-1,1,0,0]
-    dy = [0,0,-1,1]
     visited = [False] * 7
     q = deque()
     q.append(arr[0])
@@ -38,6 +38,7 @@ def solve(depth, startIdx, cntY):
     if depth == 7:
         if check(arr):
             answer += 1
+        return
 
     for i in range(startIdx,25):
         x = i // 5
@@ -50,3 +51,4 @@ def solve(depth, startIdx, cntY):
 
 solve(0,0,0)
 print(answer)
+
