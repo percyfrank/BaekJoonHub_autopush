@@ -28,7 +28,6 @@ def check(arr):
     else:
         return True
 
-possible = [[False] * 5 for _ in range(5)]
 def solve(depth, startIdx, cntY):
     global answer
 
@@ -44,11 +43,8 @@ def solve(depth, startIdx, cntY):
         x = i // 5
         y = i % 5
         arr.append((x,y))
-        possible[x][y] = True
         solve(depth+1, i+1, cntY + (graph[x][y] == 'Y'))
-        possible[x][y] = False
         arr.pop()
 
 solve(0,0,0)
 print(answer)
-
