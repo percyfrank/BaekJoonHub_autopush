@@ -1,15 +1,16 @@
 from collections import deque
 
+answer = 0
 def solution(maps):
+    
     n = len(maps)
     m = len(maps[0])
-    answer = 0
     
     dx = [-1,1,0,0]
     dy = [0,0,-1,1]
     
     def bfs(x,y):
-        nonlocal answer
+        global answer
         visited = [[False] * m for _ in range(n)]
         q = deque()
         q.append((x,y))
@@ -27,9 +28,7 @@ def solution(maps):
                         visited[nx][ny] = True
                         q.append((nx,ny))
                     
-    
     bfs(0,0)
-    
     if maps[n-1][m-1] == 1:
         return -1
     else:
