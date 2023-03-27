@@ -6,12 +6,13 @@ arr = []
 dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 
+# 인접 여부 확인
 def check(arr):
     visited = [False] * 7
     q = deque()
     q.append(arr[0])
     visited[0] = True
-
+    cnt = 1
     while q:
         x,y = q.popleft()
         for i in range(4):
@@ -20,21 +21,23 @@ def check(arr):
             if (nx,ny) in arr:
                 idx = arr.index((nx,ny))
                 if not visited[idx]:
-                    visited[idx] = True
                     q.append((nx,ny))
+                    cnt += 1
+                    visited[idx] = True
 
-    if False in visited:
+    if cnt != 7:
         return False
     else:
         return True
 
-def solve(depth, startIdx, cntY):
+
+def solve(startIdx, cntY):
     global answer
 
     if cntY >= 4:
         return
 
-    if depth == 7:
+    if len(arr) == 7:
         if check(arr):
             answer += 1
         return
@@ -43,8 +46,8 @@ def solve(depth, startIdx, cntY):
         x = i // 5
         y = i % 5
         arr.append((x,y))
-        solve(depth+1, i+1, cntY + (graph[x][y] == 'Y'))
+        solve(i+1, cntY + (graph[x][y] == 'Y'))
         arr.pop()
 
-solve(0,0,0)
+solve(0,0)
 print(answer)
