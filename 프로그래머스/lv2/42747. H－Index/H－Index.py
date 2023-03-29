@@ -1,10 +1,10 @@
 def solution(citations):
-    answer = 0
     
-    citations.sort(reverse = True)
+    citations.sort()
+    n = len(citations)
     
     for i, citation in enumerate(citations):
-        if citation <= i:
-            return i
-    
-    return len(citations)
+        if citation >= n-i:
+            return n-i
+        
+    return 0
