@@ -1,5 +1,5 @@
 n = int(input())
-dp = [0 for _ in range(n+1)]
+dp = [0] * (1000001)
 
 dp[1] = 0
 
