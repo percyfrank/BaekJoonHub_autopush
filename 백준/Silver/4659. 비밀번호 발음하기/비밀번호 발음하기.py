@@ -5,7 +5,6 @@ def check_vowel(word):
             cnt += 1
     if cnt == 0:
         return True
-    return False
 
 def check_triple(word):
     v_cnt = 0
@@ -21,7 +20,6 @@ def check_triple(word):
             v_cnt = 0
             if c_cnt == 3:
                 return True
-    return False
 
 def check_double(word):
     tmp = 1
@@ -30,7 +28,6 @@ def check_double(word):
             tmp += 1
         if tmp == 2:
             return True
-    return False
 
 vowel = ['a','e','i','o','u']
 while True:
