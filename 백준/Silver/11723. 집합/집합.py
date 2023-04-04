@@ -16,14 +16,15 @@ for i in range(m):
             print(0)
     elif arr[0] == 'add':
         s.add(arr[1])
-    elif arr[0] == 'remove' and arr[1] in s:
-        s.remove(arr[1])
+    elif arr[0] == 'remove':
+        if arr[1] in s:
+            s.remove(arr[1])
     elif arr[0] == 'toggle':
         if arr[1] in s:
             s.remove(arr[1])
         else:
             s.add(arr[1])
     elif arr[0] == 'all':
-        s = set([i+1 for i in range(20)])
+        s = set(range(1,21))
     elif arr[0] == 'empty':
         s.clear()
