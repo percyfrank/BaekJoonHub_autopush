@@ -14,7 +14,7 @@ def solution(name):
     
     min_cnt = len(name) - 1
     for i, char in enumerate(name):
-        
+        print(i,char)
         next = i+1
         while next < len(name) and name[next] == 'A':
             next += 1
