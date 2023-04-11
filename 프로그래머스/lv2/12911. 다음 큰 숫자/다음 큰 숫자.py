@@ -1,7 +1,12 @@
 def solution(n):
-    num1 = bin(n).count('1')
+    
+    start = n+1
+    cnt = bin(n).count('1')
+
     while True:
-        n = n + 1
-        if num1 == bin(n).count('1'):
+
+        if bin(start).count('1') == cnt:
+            return start
             break
-    return n
+
+        start += 1
