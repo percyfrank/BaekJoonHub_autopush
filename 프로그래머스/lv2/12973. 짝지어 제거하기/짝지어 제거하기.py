@@ -1,21 +1,15 @@
-from collections import deque
-
 def solution(s):
 
     stack = []
-    stack.append(s[0])
-    idx = 1
-    while idx <= len(s) - 1:
+    for alpha in s:
         if not stack:
-            stack.append(s[idx])
-            idx += 1
-            continue
-        if stack[-1] == s[idx]:
-            stack.pop()
-            idx += 1
+            stack.append(alpha)
         else:
-            stack.append(s[idx])
-            idx += 1
+            if (stack[-1] == alpha):
+                stack.pop()
+            else:
+                stack.append(alpha)
+    
     if not stack:
         return 1
     else:
