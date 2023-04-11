@@ -4,12 +4,10 @@ def solution(n):
     for i in range(1,n+1):
         start = i
         sum = 0
-        while True:
+        while sum < n:
             sum += start
             start += 1
-            if sum > n:
-                break
-            elif sum == n:
+            if sum == n:
                 answer += 1
                 break
         
