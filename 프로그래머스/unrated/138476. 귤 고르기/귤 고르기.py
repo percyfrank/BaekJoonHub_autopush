@@ -13,11 +13,9 @@ def solution(k, tangerine):
     if a[0][1] >= k:
         return 1
     else:
-        for data in a:
-            if data[1] < k:
-                k -= data[1]
-                answer += 1
+        k -= a[0][1]
+        for i in range(1,len(a)):
+            if a[i][1] >= k:
+                return i+1
             else:
-                break
-                        
-    return answer   
+                k -= a[i][1]
