@@ -9,8 +9,5 @@ def solution(elements):
         for k in range(len(tmp)-i):
             num.add(sum(tmp[k:k+i]))
         
-   
-#     for data in arr:
-#         num.add(sum(data))
         
     return len(num)
