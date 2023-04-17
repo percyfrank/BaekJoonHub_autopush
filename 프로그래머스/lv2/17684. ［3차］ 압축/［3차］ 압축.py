@@ -1,10 +1,7 @@
 def solution(msg):
     answer = []
     
-    words = dict()    
-    words[chr(65)] = 1
-    for i in range(1,26):
-        words[chr(65+i)] = words[chr(65+i-1)] + 1
+    words = {chr(i + 64):i for i in range(1, 27)}
     
     idx = 0
     tmp = 0
