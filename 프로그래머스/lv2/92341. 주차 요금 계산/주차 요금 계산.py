@@ -14,32 +14,21 @@ def solution(fees, records):
     
     total = dict()
     flag = True
-    for i in range(len(arr)):
-        if arr[i][2] == "IN":
-            if flag:
-                total.setdefault(arr[i][1],0)
-                total[arr[i][1]] -= arr[i][0]
-                flag = False
-            else:
-                total.setdefault(arr[i][1],0)
-                total[arr[i-1][1]] += 1439
-                total[arr[i][1]] -= arr[i][0]
+    for data in arr:
+        if data[2] == "IN":
+                total.setdefault(data[1],[0,data[2]])
+                total[data[1]] = [(total[data[1]][0])-data[0],data[2]]
         else:
-            total[arr[i][1]] += arr[i][0]
-            flag = True
-        
-    if arr[len(arr)-1][2] == "IN":
-        if len(arr) == 1:
-            total[arr[len(arr)-1][1]] += 1439 - arr[len(arr)-1][0]
-        else:
-            total[arr[len(arr)-1][1]] += 1439
-            
+            total[data[1]] = [(total[data[1]][0])+data[0],data[2]]
+               
     answer = []
-    for key, value in total.items():
-        if value <= fees[0]:
+    for key,value in total.items():
+        if value[1] == "IN":
+            total[key][0] += 1439 
+        if value[0] <= fees[0]:
             answer.append(fees[1])
         else:
-            minute = math.ceil((value - fees[0]) / fees[2])
+            minute = math.ceil((value[0] - fees[0]) / fees[2])
             answer.append(fees[1] + minute * fees[3])
             
     return answer
