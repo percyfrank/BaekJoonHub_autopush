@@ -1,23 +1,24 @@
 def solution(record):
+    userDict = {}
     answer = []
-    
-    arr = []
-    name = {}  
-    for data in record:
-        arr.append(data.split())
 
-    for data in arr:
-        if data[0] == "Enter":
-            name[data[1]] = data[2]
-            answer.append(data[1] + "님이 들어왔습니다.")
-        elif data[0] == "Leave":
-            answer.append(data[1] + "님이 나갔습니다.")
-        elif data[0] == "Change":
-            name[data[1]] = data[2]
+    for line in record:
+        line = line.split(" ")
 
-    result = []
-    for data in answer:
-        idx = data.index("님")
-        result.append(data.replace(data[:idx],name[data[:idx]]))
-    
-    return result
+        if line[0] == "Enter":
+            userDict[line[1]] = line[2]
+        elif line[0] == "Change":
+            userDict[line[1]] = line[2]
+
+    for line in record:
+        line = line.split(" ")
+        targetString = userDict[line[1]]
+        if line[0] == "Enter":
+            targetString += "님이 들어왔습니다."
+        elif line[0] == "Leave":
+            targetString += "님이 나갔습니다."
+        else:
+            continue
+        answer.append(targetString)
+
+    return answer
