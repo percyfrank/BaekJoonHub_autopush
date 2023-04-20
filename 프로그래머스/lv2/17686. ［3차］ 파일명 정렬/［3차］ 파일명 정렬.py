@@ -1,9 +1,10 @@
 import re
 def solution(files):
     
-    tmp = [re.split('(\d+)', file) for file in files]
-    print(tmp)
+    arr = []
+    for file in files:
+        head,number,tail = re.match(r'([\D]+)(\d{1,5})([\S ]*)',file).groups()
+        arr.append([head,number,tail])
     
-    sort = sorted(tmp, key = lambda x: (x[0].lower(), int(x[1])))
-    
-    return [''.join(s) for s in sort]
+    arr.sort(key=lambda x:(x[0].lower(),int(x[1])))    
+    return [''.join(data) for data in arr]
