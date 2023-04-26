@@ -1,27 +1,33 @@
 import math
 
-def isPrime(x):
-    if x < 2:
+def to(n,exp):
+    regex = "0123456789"
+    str = ""
+    
+    while n > 0:
+        a,b = divmod(n,exp)
+        str = regex[b] + str
+        n = n // exp
+
+    return str
+
+def isPrime(n):
+    if n < 2: 
         return False
-    for i in range(2,int(math.sqrt(x)+1)):
-        if x % i == 0:
+    for i in range(2,int(math.sqrt(n))+1):
+        if n % i == 0:
             return False
     return True
 
-
 def solution(n, k):
-    
-    words=""
-    while n:           
-        words = str(n%k)+words
-        n=n//k
-    words = words.split('0')  
-    
     answer = 0
-    for word in words:
-        if len(word) == 0:
+    num = to(n,k)
+    result = num.split('0')
+    
+    for data in result:
+        if data == "":
             continue
-        if isPrime(int(word)):
+        if isPrime(int(data)):
             answer += 1
-
+            
     return answer
