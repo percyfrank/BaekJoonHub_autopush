@@ -1,23 +1,25 @@
 from collections import deque
 
 def solution(cacheSize, cities):
+    answer = 0
+        
+    cache = deque(maxlen=cacheSize)
     
     for i in range(len(cities)):
         cities[i] = cities[i].lower()
-        
-    answer = 0
-    cache = deque(maxlen=cacheSize)
+
+    # if cacheSize == 0:
+    #     answer = 5*len(cities)
+    # else:
+    for i in range(len(cities)):
+        if cities[i] in cache:
+            cache.remove(cities[i])
+            cache.append(cities[i])
+            answer += 1
+        else:
+            cache.append(cities[i])
+            answer += 5
     
-    if cacheSize == 0:
-        answer += len(cities) * 5
-    else:
-        for data in cities:
-            if data not in cache: 
-                cache.append(data)
-                answer += 5
-            else:
-                cache.remove(data)
-                cache.append(data)
-                answer += 1
-                
     return answer
+
+                
