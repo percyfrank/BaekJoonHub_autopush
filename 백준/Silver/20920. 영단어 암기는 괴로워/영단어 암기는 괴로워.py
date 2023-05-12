@@ -1,7 +1,9 @@
-n,m = map(int,input().split())
+import sys
+
+n,m = map(int,sys.stdin.readline().split())
 words = {}
 for _ in range(n):
-    tmp = input()
+    tmp = sys.stdin.readline().rstrip()
     if len(tmp) < m:
         continue
     words.setdefault(tmp,0)
